@@ -52,14 +52,29 @@
                     <a href="contact.html" class="text-gray-600 font-medium hover:text-indigo-600 transition">Liên Hệ</a>
                 </nav>
 
-                <!-- Mobile Menu Button (Placeholder for visual) -->
+                <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
                 </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-md absolute w-full z-40">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-indigo-50 rounded-md">Trang Chủ</a>
+                <div class="block px-3 py-2 text-base font-medium text-gray-700">
+                    Hệ Sinh Thái
+                    <div class="ml-4 mt-2 space-y-2">
+                        <a href="preschool.html" class="block px-3 py-2 text-sm text-gray-600 hover:bg-green-50 rounded-md">Mầm non KCL (Tâm)</a>
+                        <a href="english.html" class="block px-3 py-2 text-sm text-gray-600 hover:bg-blue-50 rounded-md">Tiếng Anh Monster (Trí)</a>
+                        <a href="custom-sales.html" class="block px-3 py-2 text-sm text-gray-600 hover:bg-orange-50 rounded-md">Nến Thơm Custom (Thân)</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-indigo-50 rounded-md">Liên Hệ</a>
             </div>
         </div>
     </header>
@@ -223,6 +238,14 @@
     <!-- AI Chatbot Placeholder UI - Logic handled in ai-logic.js -->
     <div id="ai-chatbox-container"></div>
     <script src="ai-logic.js"></script>
-
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+    </script>
 </body>
 </html>

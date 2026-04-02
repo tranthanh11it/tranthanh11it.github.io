@@ -25,7 +25,7 @@ Dữ liệu hệ sinh thái:
 3. Nến thơm Custom & Tinh dầu (Thân):
 - Dịch vụ: Thiết kế nến thơm, tem nhãn theo yêu cầu và cảm xúc khách hàng.
 - Điểm nhấn: Dùng Scent Finder AI để gợi ý mùi hương dựa trên cảm trạng người mua/người nhận.
-- Cửa hàng đồ: shop.kcl.vn
+- Cửa hàng đồ KCL cho bé: https://cocco.qodeinteractive.com/
 
 Nếu khách hỏi tư vấn (Ví dụ: "Tư vấn nến cho người căng thẳng", "Học phí mầm non bao nhiêu?"), hãy dựa vào thông tin trên để trả lời thật khéo léo và hiện đại.
 `;

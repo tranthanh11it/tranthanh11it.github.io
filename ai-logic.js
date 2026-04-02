@@ -1,8 +1,8 @@
 /**
- * SPORTAIV Demo - AI Logic with Gemini 1.5 Flash
- * IMPORTANT: Replace YOUR_GEMINI_API_KEY_HERE with your actual API key before demo.
+ * SPORTAIV Demo - AI Logic
+ * Using OpenRouter API
  */
-const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY_HERE';
+const OPENROUTER_API_KEY = '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';
 
 // Hệ thống dữ liệu cứng (System Prompt) cho AI
 const SYSTEM_PROMPT = `
@@ -142,9 +142,9 @@ function initChatbox() {
         addMessageToUI(userInput, 'user');
         chatInput.value = '';
 
-        // Check if API key is replaced
-        if (GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
-            addMessageToUI('🚧 Để dùng được tính năng này, anh Thành cần thay mã API Key thật vào file ai-logic.js trước nhé!', 'ai');
+        // Check if API key is provided
+        if (!OPENROUTER_API_KEY) {
+            addMessageToUI('🚧 Để dùng được tính năng này, anh Thành cần kiểm tra lại API Key nhé!', 'ai');
             return;
         }
 
@@ -222,57 +222,54 @@ function initChatbox() {
 }
 
 async function callGeminiAPI(userInput) {
-    // Lưu lịch sử
+    // Using OpenRouter format (function name kept for compatibility)
+    
+    // Lưu lịch sử theo chuẩn OpenAI / OpenRouter
     currentChatHistory.push({
         "role": "user",
-        "parts": [{ "text": userInput }]
+        "content": userInput
     });
 
-    // Tạo payload với system prompt ở dạng message khởi đầu (Gemini v1beta trick nếu chưa dùng systemInstruction)
-    // Để đơn giản và an toàn với free API trên frontend, gửi System Prompt dưới dạng context ở role user trước.
-    
     let messagesPayload = [
         {
-            "role": "user",
-            "parts": [{ "text": "ĐÂY LÀ CHỈ THỊ HỆ THỐNG: " + SYSTEM_PROMPT + "\n\nXin hãy xác nhận bạn đã hiểu. Chào tôi ngắn gọn." }]
-        },
-        {
-            "role": "model",
-            "parts": [{ "text": "Dạ vâng, em đã rõ. Em là trợ lý hệ sinh thái SPORTAIV, sẵn sàng hỗ trợ anh/chị!" }]
+            "role": "system",
+            "content": SYSTEM_PROMPT
         },
         ...currentChatHistory
     ];
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: 'POST',
         headers: {
+            'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+            'HTTP-Referer': 'https://pate.sportaiv.com',
+            'X-Title': 'SPORTAIV Vcom',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            contents: messagesPayload,
-            generationConfig: {
-                temperature: 0.7,
-                maxOutputTokens: 800,
-            }
+            model: "google/gemini-1.5-flash",
+            messages: messagesPayload,
+            temperature: 0.7,
+            max_tokens: 800
         })
     });
 
     if (!response.ok) {
         const errorData = await response.json();
-        console.error("Lỗi từ Gemini:", errorData);
+        console.error("Lỗi từ OpenRouter API:", errorData);
         throw new Error('API Request Failed');
     }
 
     const data = await response.json();
     let aiText = "Xin lỗi, em không hiểu ý anh/chị lắm.";
     
-    if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts.length > 0) {
-        aiText = data.candidates[0].content.parts[0].text;
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+        aiText = data.choices[0].message.content;
         
         // Lưu lịch sử bot return để có context nối tiếp
         currentChatHistory.push({
-            "role": "model",
-            "parts": [{ "text": aiText }]
+            "role": "assistant",
+            "content": aiText
         });
     }
 

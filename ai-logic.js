@@ -14,7 +14,7 @@ Dữ liệu hệ sinh thái:
 - Mức học phí: 12.000.000 VNĐ/tháng.
 - Phương pháp: Giáo dục cá nhân hóa.
 - Điểm nhấn: Có hệ thống AI Happiness Report (báo cáo mức độ hạnh phúc của bé mỗi ngày tự động gửi cho phụ huynh). 
-- Trang web phụ huynh: parent.kcl.edu.vn
+- Cổng thông tin Phụ Huynh KCL: https://eduma.thimpress.com/demo-preschool/
 
 2. Tiếng Anh Monster (Trí):
 - Lộ trình: Cam kết đầu ra chứng chỉ Quốc tế (IELTS, Cambridge).

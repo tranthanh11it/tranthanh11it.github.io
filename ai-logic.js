@@ -18,9 +18,9 @@ Dữ liệu hệ sinh thái:
 
 2. Tiếng Anh Monster (Trí):
 - Lộ trình: Cam kết đầu ra chứng chỉ Quốc tế (IELTS, Cambridge).
-- Điểm nhấn: Có AI Tutor 24/7 giúp chấm bài nói, sửa lỗi ngữ pháp. Kho dữ liệu OpenClaw cập nhật liên tục.
+- Điểm nhấn: Có cô giáo trợ giảng ảo 24/7 giúp chấm bài nói, sửa bài cực dễ thương. Kho bài tập luôn sinh động, nhiều màu sắc.
 - Lớp học: Dùng tablet, môi trường kỷ luật.
-- Hệ thống LMS: learn.monster.edu.vn
+- Trải nghiệm App Học Tập: https://eduma.thimpress.com/demo-online-learning/
 
 3. Nến thơm Custom & Tinh dầu (Thân):
 - Dịch vụ: Thiết kế nến thơm, tem nhãn theo yêu cầu và cảm xúc khách hàng.

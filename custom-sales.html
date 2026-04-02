@@ -3,167 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bán hàng Custom - Trải nghiệm Thân thể | SPORTAIV</title>
+    <title>Mầm Non KCL - Cụ Khoai Lang | Khai Mở Tâm Hồn Trẻ Thơ</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: {
+                            50: '#f4f9f6',
+                            100: '#e3f1e9',
+                            200: '#c7e0d3',
+                            500: '#7cb597',
+                            600: '#5a9678',
+                            700: '#487962',
+                        },
+                        warm: {
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        },
+                        cream: '#FDFBF7'
+                    },
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glassmorphism {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+        body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #FDFBF7; }
+        
+        /* Fade in animations */
+        .fade-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-orange-50 text-gray-800 antialiased flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen text-gray-800">
 
-    <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 glassmorphism shadow-sm">
+    <!-- Navigation -->
+    <nav class="bg-cream shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="flex items-center gap-2">
-                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                            S
-                        </div>
-                        <span class="font-bold text-2xl tracking-tight text-indigo-900">SPORT<span class="text-purple-600">AIV</span></span>
-                    </a>
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="font-extrabold text-2xl tracking-tighter text-sage-700 flex items-center gap-2">
+                    <span class="text-3xl">🌱</span> Cụ Khoai Lang
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="preschool.html" class="text-gray-600 hover:text-sage-600 font-medium transition">Mầm non</a>
+                    <a href="english.html" class="text-gray-600 hover:text-sage-600 font-medium transition">Ngoại ngữ</a>
+                    <a href="custom-sales.html" class="text-sage-600 font-semibold border-b-2 border-sage-600 pb-1">Bé Mầm Non KCL</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-sage-600 font-medium transition">Liên hệ</a>
+                    <a href="contact.html" class="bg-sage-600 text-white px-5 py-2.5 rounded-full font-medium hover:bg-sage-700 transition shadow">Gắn Kết Cùng Bé</a>
                 </div>
-                
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-600 font-medium hover:text-orange-600 transition">Trang Chủ</a>
-                    <div class="relative group">
-                        <button class="text-orange-600 font-semibold flex items-center gap-1">
-                            Hệ Sinh Thái
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <!-- Dropdown -->
-                        <div class="absolute left-0 mt-2 w-56 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-200">
-                            <div class="py-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                <a href="preschool.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700" role="menuitem">Mầm non KCL (Tâm)</a>
-                                <a href="english.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700" role="menuitem">Tiếng Anh Monster (Trí)</a>
-                                <a href="custom-sales.html" class="block px-4 py-3 text-sm text-orange-700 bg-orange-50 font-medium" role="menuitem">Nến Thơm Custom (Thân)</a>
-                            </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-sage-700 hover:text-sage-800 focus:outline-none">
+                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-sage-100">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="preschool.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-sage-50 rounded-md">Mầm non</a>
+                <a href="english.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-sage-50 rounded-md">Ngoại ngữ</a>
+                <a href="custom-sales.html" class="block px-3 py-2 text-base font-bold text-sage-700 bg-sage-50 rounded-md">Bé Mầm Non KCL</a>
+                <a href="contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-sage-50 rounded-md">Liên hệ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <header class="relative px-4 sm:px-6 lg:px-8 py-20 lg:py-32 overflow-hidden bg-sage-50">
+        <!-- Decoration bits -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-warm-100 rounded-full blur-3xl opacity-60"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-sage-200 rounded-full blur-3xl opacity-60"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div class="fade-element">
+                <span class="inline-block py-1.5 px-4 rounded-full bg-white text-sage-700 font-semibold text-sm mb-6 shadow-sm border border-sage-100">🌻 Khai mở Tâm hồn trẻ thơ</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 leading-tight mb-6">
+                    Nơi Tâm Hồn Trẻ Thơ <br><span class="text-sage-600">Được Khai Mở</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed">
+                    Phương pháp giáo dục cá nhân hóa, kết hợp giữa tình thương truyền thống và sức mạnh công nghệ hỗ trợ thông minh để đồng hành cùng con mẹ mỗi ngày, trọn vẹn và an tâm nhất.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="document.getElementById('lo-trinh').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 bg-sage-600 text-white rounded-full font-bold shadow-lg shadow-sage-200 hover:bg-sage-700 hover:-translate-y-1 transition transform z-20 relative">Khám phá lộ trình cho bé</button>
+                    <a href="contact.html" class="px-8 py-4 bg-white text-sage-600 rounded-full font-bold border border-sage-200 hover:bg-sage-50 transition text-center">Trò chuyện cùng cô</a>
+                </div>
+            </div>
+            
+            <div class="relative fade-element hidden md:block">
+                <!-- Abstract Hero Image representing kids playing in nature -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-warm-400 to-sage-400 rounded-[3rem] transform rotate-3 opacity-20 blur-sm"></div>
+                <div class="relative bg-white p-2 rounded-[3rem] shadow-xl border border-white/50">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb046ebf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Em bé vui đùa hạnh phúc" class="rounded-[2.5rem] w-full h-[500px] object-cover" />
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                        <div class="w-12 h-12 bg-warm-100 rounded-full flex items-center justify-center text-2xl">😊</div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-medium">Báo cáo tình cảm</p>
+                            <p class="font-bold text-sage-700">Mẹ an tâm 100%</p>
                         </div>
                     </div>
-                    <a href="contact.html" class="text-gray-600 font-medium hover:text-orange-600 transition">Liên Hệ</a>
-                </nav>
-                
-                <div class="md:hidden flex items-center">
-                    <button class="text-gray-600 hover:text-gray-900 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="flex-grow">
-        <!-- Hero -->
-        <section class="py-20 bg-orange-600 text-white relative overflow-hidden">
-            <div class="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1608528577891-eb055944f2e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-orange-900 to-orange-500 opacity-80"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 flex flex-col items-center text-center">
-                <span class="px-5 py-2 rounded-full bg-orange-100 text-orange-800 font-bold text-sm mb-6 inline-flex items-center gap-2">
-                    <span class="text-xl leading-none">🕯️</span> Hệ sinh thái Thân - Tâm - Trí
-                </span>
-                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">Nến Thơm & Tinh Dầu Custom</h1>
-                <p class="text-xl md:text-2xl text-orange-100 max-w-3xl mb-10">Khi con cái đã nhắm mắt ngủ say, mẹ mới có chiếc góc nhỏ thắp lên chút nến lung linh để xua đi mỏi mệt, âu yếm lại chính tâm hồn mình.</p>
-            </div>
-        </section>
-
-        <!-- Features -->
-        <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-3xl font-bold text-orange-900 mb-6">Phút Giây Dành Riêng Cho Mẹ</h2>
-                    <p class="text-lg text-gray-700 mb-6">Tháo đi chiếc tạp dề mùi thức ăn, mẹ thư thả đốt hũ nến ngát mùi hoa cỏ. Không chỉ cho nhà thơm mát, mà để mẹ nạp pin yêu thương.</p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-orange-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-gray-700">Sáp chiết xuất thiên nhiên vô cùng êm dịu, không lo bị ngộp hay ảnh hưởng hô hấp của con</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-orange-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-gray-700">Viết tên con hay một câu tự cổ vũ tinh thần siêu dễ thương lên tem nhãn</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-orange-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-gray-700">Món quà hoàn hảo để "chữa lành" những mẹ bỉm tất bật tối ngày</span>
-                        </li>
-                    </ul>
+        
+        <!-- 2. Phần "Nỗi đau của phụ huynh" (Pain Points) -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-element">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Làm mẹ đâu chỉ có niềm vui, <br>đôi khi là những trăn trở thầm kín...</h2>
                 </div>
-                <div class="bg-white p-8 rounded-3xl shadow-xl border border-orange-100 relative">
-                    <div class="absolute -bottom-6 -right-6 w-20 h-20 bg-orange-200 rounded-full blur-xl opacity-60"></div>
-                    <div class="text-4xl mb-4">✨ 👃</div>
-                    <h3 class="text-2xl font-bold text-orange-800 mb-3">AI Hiểu Mẹ Nhất</h3>
-                    <p class="text-gray-600 mb-6">Trời chuyển lạnh mẹ bỗng thấy buồn man mác chả hiểu sao? Mẹ cứ kể cho trợ lý nghe nhé, AI sẽ thủ thỉ tư vấn cho mẹ một mùi thông trầm cực kỳ râm ran thoải mái, đánh bay stress liền.</p>
-                    <div class="p-4 bg-orange-50 rounded-xl border border-orange-200 text-sm italic text-orange-800">
-                        "Mình hâm sữa cho con mệt quá, dạo này mình bị khó ngủ." -> Cô AI nhắn nhủ: Dạ mẹ xài dòng Oải hương Zen Garden này đi, thơm mơ màng ngủ thẳng giấc nè mẹ!
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-sage-50 rounded-3xl p-8 border border-sage-100 shadow-sm hover:shadow-md transition fade-element">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm">🍽️</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Bạn lo lắng không biết hôm nay con ăn gì, ngủ ra sao?</h3>
+                        <p class="text-gray-600">Những ngày bận rộn trên công ty, lòng mẹ như lửa đốt, chẳng biết ở trường con có chịu ăn hết suất không, trưa có ngoan ngoãn chợp mắt không.</p>
+                    </div>
+
+                    <div class="bg-warm-100/50 rounded-3xl p-8 border border-warm-100 shadow-sm hover:shadow-md transition fade-element" style="transition-delay: 100ms;">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm">📱</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Mệt mỏi với những báo cáo giấy hay tin nhắn Zalo trôi mất đi?</h3>
+                        <p class="text-gray-600">Bạn cần một cách cập nhật tình hình của con một cách tinh tế, có hệ thống thay vì phải lục tìm ảnh trong những nhóm chat chung xô bồ.</p>
+                    </div>
+
+                    <div class="bg-sage-50 rounded-3xl p-8 border border-sage-100 shadow-sm hover:shadow-md transition fade-element" style="transition-delay: 200ms;">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm">🌱</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Cần một môi trường thực sự hiểu tính cách riêng của con?</h3>
+                        <p class="text-gray-600">Biết rằng mỗi em bé là một mầm cây mang nét cá tính đặc biệt, mẹ mong con không bị rập khuôn hay gò ép quá đáng.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Subdomain CTA -->
-        <section class="py-16 bg-white border-t border-b border-orange-100 mt-12 mb-12">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <div class="inline-block p-4 bg-orange-100 rounded-full mb-6">
-                    <svg class="w-10 h-10 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+        <!-- 3. Giải pháp đột phá: Nhật Ký Hạnh Phúc -->
+        <section class="py-24 bg-sage-600 text-white relative overflow-hidden" id="lo-trinh">
+            <div class="absolute top-0 left-0 w-full h-full opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="fade-element">
+                        <span class="inline-block px-4 py-1.5 bg-sage-500 rounded-full font-bold text-sm tracking-wide mb-6">Mảnh ghép ấn tượng</span>
+                        <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Nhật Ký Hạnh Phúc</h2>
+                        <p class="text-sage-100 text-lg mb-8 leading-relaxed">
+                            Mỗi ngày, điều mẹ háo hức chờ đợi nhất là <strong>"Nhật ký gửi mẹ"</strong>. Giáo viên chỉ cần vài điểm nhấn nhẹ nhàng, hệ thống trợ lý thông minh lập tức tự động "thêu dệt" nên một bức thư tường thuật vô cùng ấm áp, gắn kèm hình ảnh tươi rói của bé.
+                        </p>
+                        
+                        <div class="space-y-6 mb-10">
+                            <div class="flex items-start">
+                                <div class="bg-white rounded-full p-2 mr-4 flex-shrink-0 mt-1">
+                                    <svg class="w-5 h-5 text-sage-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <p class="text-sage-50"><strong class="text-white">Báo cáo tự động:</strong> Cô giáo không còn cắm mặt vào điện thoại làm báo cáo, để dành trọn vẹn thời gian ôm ấp con.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-white rounded-full p-2 mr-4 flex-shrink-0 mt-1">
+                                    <svg class="w-5 h-5 text-sage-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <p class="text-sage-50"><strong class="text-white">Thấu hiểu sâu sắc:</strong> Dựa trên dữ liệu, hệ thống kể lại rành mạch hôm nay bé cười vì điều gì, ăn món gì nhiều nhất.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-white rounded-full p-2 mr-4 flex-shrink-0 mt-1">
+                                    <svg class="w-5 h-5 text-sage-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <p class="text-sage-50"><strong class="text-white">Vip treatment:</strong> Con được chăm sóc đặc biệt, như thể vẫn luôn nằm trong vòng tay yêu thương của mẹ.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="fade-element relative">
+                        <!-- Illustration of Robot helping teacher -->
+                        <div class="bg-white rounded-[2rem] p-8 text-gray-800 shadow-2xl relative">
+                            <div class="absolute -top-8 -right-8 w-24 h-24 bg-warm-400 rounded-full border-8 border-sage-600 flex items-center justify-center text-4xl shadow-lg">💌</div>
+                            
+                            <h4 class="font-bold text-gray-500 mb-2 uppercase text-xs tracking-wider">Mô phỏng Hệ Thống</h4>
+                            <div class="flex flex-col gap-4">
+                                <div class="p-4 bg-gray-50 rounded-xl border border-gray-100 flex items-center">
+                                    <div class="text-2xl mr-4">👩‍🏫</div>
+                                    <div class="text-sm text-gray-600 font-mono">Cô nhập: bé ăn ngoan, cười lớn khi bắt bướm vườn hoa.</div>
+                                </div>
+                                
+                                <div class="flex justify-center -my-2 z-10 relative">
+                                    <div class="bg-sage-100 text-sage-700 py-1 px-4 rounded-full text-sm font-bold flex items-center gap-2 border border-sage-200">
+                                        🤖✍️ Trợ lý xử lý trong nháy mắt
+                                    </div>
+                                </div>
+
+                                <div class="p-4 bg-warm-50 rounded-xl border border-warm-200">
+                                    <h5 class="text-sage-700 font-bold mb-1">Thư điện tử Nhật Ký Hạnh Phúc</h5>
+                                    <p class="text-gray-700 italic text-sm leading-relaxed">
+                                        "Mẹ yêu ơi, hôm nay bé Khoai Lang nhà mình đã có một ngày thật tuyệt vời. Trưa nay con cực kỳ giỏi khi tự giác múc hết phần súp măng tây thơm ngon mà không cần cô đút. Chiều đến con chạy nhảy ở vườn và cười giòn tan khi bắt được một bạn bướm vàng. Mẹ yên tâm nha, con rất vui!"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h2 class="text-3xl font-bold text-orange-900 mb-4">Mẹ Tự Thiết Kế Xinh Xắn</h2>
-                <p class="text-lg text-gray-600 mb-8">Tranh thủ lúc con vừa chơi lego, mẹ quẹt quẹt điện thoại kéo thả chữ tự thiết kế tem rồi đặt hàng, nháy mắt đơn gói xong chuẩn bị ship tới tay mâm cơm còn chưa tắt bếp cơ đấy!</p>
-                <a href="#" class="inline-block px-8 py-4 bg-orange-600 text-white rounded-full font-bold shadow-lg hover:bg-orange-700 hover:shadow-xl transition transform hover:-translate-y-1">
-                    Tự thiết kế bộ quà tặng (shop.kcl.vn)
-                </a>
             </div>
         </section>
 
+        <!-- 4. Triết lý Giáo dục & Nội dung (Phần "Tâm") -->
+        <section class="py-24 bg-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-element">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Trang bị "Tâm" hồn ấm áp <br>cho một đời bình an</h2>
+                </div>
+
+                <div class="space-y-16">
+                    <!-- Point 1 -->
+                    <div class="flex flex-col md:flex-row gap-12 items-center fade-element">
+                        <div class="md:w-1/2 order-2 md:order-1">
+                            <h3 class="text-2xl font-bold text-sage-700 mb-4 flex items-center gap-3">
+                                <span>1</span> Tôn trọng cá nhân hóa
+                            </h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                Không có bất kỳ sự gò ép, tạo khuôn mẫu hay điểm số nào cho sự phát triển của tâm hồn. Mỗi bé tại KCL có một nhịp độ trưởng thành riêng, và nhà trường luôn linh hoạt lộ trình để khai mở những thế mạnh tiềm ẩn nhất của con.
+                            </p>
+                        </div>
+                        <div class="md:w-1/2 order-1 md:order-2 rounded-[2rem] overflow-hidden shadow-lg h-64 bg-sage-200">
+                            <img src="https://images.unsplash.com/photo-1587691592099-24045742c181?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cá nhân hóa" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div class="flex flex-col md:flex-row gap-12 items-center fade-element">
+                        <div class="md:w-1/2 rounded-[2rem] overflow-hidden shadow-lg h-64 bg-warm-200">
+                            <img src="https://images.unsplash.com/photo-1549488344-c1fa93d08dd5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Học liệu thông minh" class="w-full h-full object-cover">
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold text-sage-700 mb-4 flex items-center gap-3">
+                                <span>2</span> Học liệu thông minh, tinh hoa thế giới
+                            </h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                Không ngừng cải tiến, kho giáo án tự động cập nhật liên tục các phương pháp tiên tiến nhất thế giới như Montessori, Reggio Emilia. Con tự do khám phá vạn vật bằng 5 giác quan rực rỡ và tự nhiên.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div class="flex flex-col md:flex-row gap-12 items-center fade-element">
+                        <div class="md:w-1/2 order-2 md:order-1">
+                            <h3 class="text-2xl font-bold text-sage-700 mb-4 flex items-center gap-3">
+                                <span>3</span> Thực đơn "Vỗ Về Ngôi Nhà Nhỏ"
+                            </h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                Dinh dưỡng là nền tảng của tiếng cười. Mỗi thực đơn tuần đều được thiết kế dựa trên sự phát triển chiều cao, cân nặng và khẩu vị đặc biệt của từng nhóm trẻ, cam kết "Eat Clean" từ những khu vườn nông sản tươi mát.
+                            </p>
+                        </div>
+                        <div class="md:w-1/2 order-1 md:order-2 rounded-[2rem] overflow-hidden shadow-lg h-64 bg-sage-200">
+                            <img src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dinh dưỡng" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Khu vực Subdomain & Hệ thống -->
+        <section class="py-24 bg-white border-t border-sage-50 fade-element text-center">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-sage-50 rounded-[3rem] p-12 border border-sage-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full mix-blend-overlay opacity-50 blur-xl"></div>
+                    <h2 class="text-3xl font-bold text-sage-800 mb-6">Đồng hành trọn vẹn cùng gia đình</h2>
+                    <p class="text-lg text-sage-600 mb-8 max-w-2xl mx-auto">
+                        Thế giới thu nhỏ của con yêu nằm trọn vẹn trong một cổng thông tin chuyên biệt dành riêng cho phụ huynh. Nhà trường và Mẹ, song hành không khoảng cách.
+                    </p>
+                    <a href="https://parent.sportaiv.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold rounded-full text-white bg-sage-600 hover:bg-sage-700 shadow-xl shadow-sage-200 transition transform hover:-translate-y-1">
+                        🚀 Vào cổng phụ huynh
+                    </a>
+                    <p class="mt-4 text-sm text-sage-400 italic">Dễ dàng trên một cái chạm màn hình</p>
+                </div>
+            </div>
+        </section>
+        
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="col-span-1 md:col-span-1">
-                <span class="font-bold text-2xl tracking-tight text-white mb-4 block">SPORT<span class="text-purple-500">AIV</span></span>
-                <p class="text-sm">Hợp nhất Thân - Tâm - Trí thông qua giáo dục và công nghệ hiện đại.</p>
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-1">
+                    <span class="font-extrabold text-2xl tracking-tighter text-white flex items-center gap-2 mb-4">
+                        <span class="text-3xl">🌱</span> Cụ Khoai Lang
+                    </span>
+                    <p class="text-sm text-gray-400">Hợp nhất Thân - Tâm - Trí thông qua giáo dục và sự thấu hiểu từ trái tim.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Hệ Sinh Thái</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="preschool.html" class="hover:text-sage-400">Trường mầm non</a></li>
+                        <li><a href="english.html" class="hover:text-sage-400">Trung tâm tiếng Anh</a></li>
+                        <li><a href="custom-sales.html" class="hover:text-sage-400">Cụ Khoai Lang</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Kết Nối (Demos)</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-sage-400">Phụ Huynh (parent.sportaiv.com)</a></li>
+                        <li><a href="#" class="hover:text-sage-400">Học Sinh (learn.sportaiv.com)</a></li>
+                        <li><a href="#" class="hover:text-sage-400">Shop (shop.sportaiv.com)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Liên Hệ</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>Hotline: 0123 456 789</li>
+                        <li>Email: hello@sportaiv.com</li>
+                        <li>District 1, Ho Chi Minh City</li>
+                    </ul>
+                </div>
             </div>
-            <div>
-                <h4 class="text-white font-semibold mb-4">Hệ Sinh Thái</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="preschool.html" class="hover:text-white transition">Mầm non KCL</a></li>
-                    <li><a href="english.html" class="hover:text-white transition">Tiếng Anh Monster</a></li>
-                    <li><a href="custom-sales.html" class="text-white hover:text-orange-400 transition">Nến Thơm Custom</a></li>
-                </ul>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+                <p>&copy; 2024 SPORTAIV. All rights reserved. Demo Version.</p>
             </div>
-            <div>
-                <h4 class="text-white font-semibold mb-4">Liên kết tương lai</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition">Cổng Phụ Huynh</a></li>
-                    <li><a href="#" class="hover:text-white transition">Hệ thống LMS</a></li>
-                    <li><a href="#" class="hover:text-white transition">Cửa hàng Quà tặng</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-semibold mb-4">Liên hệ</h4>
-                <ul class="space-y-2 text-sm">
-                    <li>Hotline: 0123 456 789</li>
-                    <li>Email: contact@sportaiv.com</li>
-                    <li>Địa chỉ: Vietnam</li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-sm text-center">
-            &copy; 2026 SPORTAIV. Đã đăng ký bản quyền. (Bản Demo)
         </div>
     </footer>
 
-    <!-- AI Chatbot Placeholder UI - Logic handled in ai-logic.js -->
+    <!-- Chatbox Component -->
     <div id="ai-chatbox-container"></div>
     <script src="ai-logic.js"></script>
+    
+    <!-- Script for mobile menu & fade animations -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-element');
+            fadeElements.forEach(el => observer.observe(el));
+            
+            // Trigger visible classes for elements in viewport immediately
+            setTimeout(() => {
+                fadeElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if(rect.top < window.innerHeight) {
+                        el.classList.add('is-visible');
+                    }
+                });
+            }, 100);
+        });
+    </script>
 </body>
 </html>
